@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+
+const Tabs = ({ tabs }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+  };
+
+  return (
+    <div>
+      <ul>
+        {tabs.map((tab, index) => (
+          <li
+            key={index}
+            onClick={() => handleTabClick(index)}
+            className={index === activeTab ? 'active' : ''}
+          >
+            {tab.title}
+          </li>
+        ))}
+      </ul>
+      <div className="tab-content">
+        {tabs[activeTab].content}
+      </div>
+    </div>
+  );
+};
+
+// Usage
+const tabsData = [
+  { title: 'Tab 1', content: 'Tab 1' },
+  { title: 'Tab 2', content: 'Tab 2' },
+  { title: 'Tab 3', content: 'Tab 3' },
+];
+
+const App = () => {
+  return (
+    <div>
+      <Tabs tabs={tabsData} />
+    </div>
+  );
+};
+
+
